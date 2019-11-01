@@ -31,9 +31,9 @@ if (isset($_POST["play-again"])) {
 }
 
 // 3 Done, the winner is...
-if ($_COOKIE["total-plays"] == $_COOKIE["max-wins"]) {
+if (isset($_COOKIE["total-plays"]) && isset($_COOKIE["max-wins"]) && $_COOKIE["total-plays"] == $_COOKIE["max-wins"]) {
     if ($_COOKIE["wins1"] == $_COOKIE["wins2"]) {
-        setcookie("final-win", "Winner");
+        setcookie("final-win", "Gelijkspel");
     } elseif ($_COOKIE["wins1"] > $_COOKIE["wins2"]) {
         setcookie("final-win", "Speler 1 wint");
     } elseif ($_COOKIE["wins1"] < $_COOKIE["wins2"]) {

@@ -17,7 +17,7 @@
                 <form class="set-wins" name="max-wins" method="post" action="test.php">
                     <div>
                         <label for="max-wins">Hoeveel rondes wil je spelen? </label>
-                        <input type="number" name="max-wins" min="2" max="5" required>
+                        <input type="number" name="max-wins" min="1" max="5" required>
                     </div>
                     <div>
                         <input type="submit" class="btn btn-outline-warning" id="submit" name="submit" value="Start">
@@ -97,6 +97,11 @@
         <?php } ?>
 
         <?php if (isset($_COOKIE["max-wins"]) && isset($_COOKIE["total-plays"]) && $_COOKIE["max-wins"] == $_COOKIE["total-plays"]) { ?>
+            <div class="play-again">
+                <form name="play-again" method="post" action="test.php">
+                    <input type="submit" class="btn btn-outline-success" id="submit" name="end-game" value="Bereken winnaar">
+                </form>
+            </div>
             <div class="reset">
                 <form name="reset" method="post" action="test.php">
                     <input type="submit" class="btn btn-outline-danger" id="submit" name="reset" value="Reset">
