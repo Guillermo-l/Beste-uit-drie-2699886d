@@ -12,15 +12,15 @@
     <h1>Steen Papier schaar</h1>
     <div class="all-content">
 
-        <?php if (!isset($_COOKIE["max-wins"])) { ?>
+        <?php if (!isset($_COOKIE["maxplays"])) { ?>
             <div>
-                <form class="set-wins" name="max-wins" method="post" action="test.php">
+                <form class="set-wins" name="maxplays" method="post" action="handler.php">
                     <div>
-                        <label for="max-wins">Hoeveel rondes wil je spelen? </label>
-                        <input type="number" name="max-wins" min="1" max="5" required>
+                        <label for="maxplays">Hoeveel rondes wil je spelen? </label>
+                        <input type="number" name="maxplays" min="1" max="5" required>
                     </div>
                     <div>
-                        <input type="submit" class="btn btn-outline-warning" id="submit" name="submit" value="Start">
+                        <input type="submit" class="btn btn-outline-warning" id="submit" name="submit-maxplays" value="Start">
                     </div>
                 </form>
             </div>
@@ -35,9 +35,9 @@
                 ?>
             </p>
 
-            <?php if (isset($_COOKIE["max-wins"]) && !isset($_COOKIE["user-1"])) { ?>
+            <?php if (isset($_COOKIE["maxplays"]) && !isset($_COOKIE["user-1"])) { ?>
                 <div>
-                    <form class="form" name="user-1" method="post" action="test.php">
+                    <form class="form" name="user-1" method="post" action="handler.php">
                         <div>
                             <div class="radio-div">
                                 <div><input type="radio" name="user-1" value="Rock" id="Rock"><label for="Rock"><img src="./img/rock.png" alt="Rock" /></div>
@@ -45,7 +45,7 @@
                                 <div><input type="radio" name="user-1" value="Scissors" id="Scissors"><label for="Scissors"><img src="./img/scissors.png" alt="Scissors" /></div>
                             </div>
                         </div>
-                        <div class="submit-button"><input type="submit" class="btn btn-outline-secondary" id="submit" name="submit" value="Submit"></div>
+                        <div class="submit-button"><input type="submit" class="btn btn-outline-secondary" id="submit" name="submit-1" value="Submit"></div>
                     </form>
                 </div>
             <?php } ?>
@@ -63,7 +63,7 @@
 
             <?php if (isset($_COOKIE["user-1"]) && !isset($_COOKIE["user-2"])) { ?>
                 <div>
-                    <form class="form" name="user-2" method="post" action="test.php">
+                    <form class="form" name="user-2" method="post" action="handler.php">
                         <div>
                             <div class="radio-div">
                                 <div><input type="radio" name="user-2" value="Rock" id="Rock"><label for="Rock"><img src="./img/rock.png" alt="Rock" /></div>
@@ -71,7 +71,7 @@
                                 <div><input type="radio" name="user-2" value="Scissors" id="Scissors"><label for="Scissors"><img src="./img/scissors.png" alt="Scissors" /></div>
                             </div>
                         </div>
-                        <div class="submit-button"><input type="submit" class="btn btn-outline-secondary" id="submit" name="submit" value="Submit"></div>
+                        <div class="submit-button"><input type="submit" class="btn btn-outline-secondary" id="submit" name="submit-2" value="Submit"></div>
                     </form>
                 </div>
             <?php } ?>
@@ -80,7 +80,7 @@
 
         <div>
             <p class="outcome">
-                <?php if(isset($_COOKIE["total-plays"]) && isset($_COOKIE["max-wins"]) && $_COOKIE["total-plays"] == $_COOKIE["max-wins"]) {
+                <?php if(isset($_COOKIE["totalplays"]) && isset($_COOKIE["maxplays"]) && isset($_COOKIE["maxplays"]) && $_COOKIE["totalplays"] == $_COOKIE["maxplays"]) {
                     echo $_COOKIE["final-win"];
                 }
                 ?>
@@ -88,22 +88,17 @@
         </div>
 
 
-        <?php if (isset($_COOKIE["user-1"]) && isset($_COOKIE["user-2"]) && $_COOKIE["max-wins"] !== $_COOKIE["total-plays"]) { ?>
+        <?php if (isset($_COOKIE["user-1"]) && isset($_COOKIE["user-2"]) && $_COOKIE["maxplays"] !== $_COOKIE["totalplays"]) { ?>
             <div class="play-again">
-                <form name="play-again" method="post" action="test.php">
+                <form name="play-again" method="post" action="handler.php">
                     <input type="submit" class="btn btn-outline-success" id="submit" name="play-again" value="Volgende Ronde">
                 </form>
             </div>
         <?php } ?>
 
-        <?php if (isset($_COOKIE["max-wins"]) && isset($_COOKIE["total-plays"]) && $_COOKIE["max-wins"] == $_COOKIE["total-plays"]) { ?>
-            <div class="play-again">
-                <form name="play-again" method="post" action="test.php">
-                    <input type="submit" class="btn btn-outline-success" id="submit" name="end-game" value="Bereken winnaar">
-                </form>
-            </div>
+        <?php if(isset($_COOKIE["maxplays"]) && isset($_COOKIE["totalplays"]) && isset($_COOKIE["totalplays"]) && $_COOKIE["maxplays"] == $_COOKIE["totalplays"]) { ?>
             <div class="reset">
-                <form name="reset" method="post" action="test.php">
+                <form name="reset" method="post" action="handler.php">
                     <input type="submit" class="btn btn-outline-danger" id="submit" name="reset" value="Reset">
                 </form>
             </div>
