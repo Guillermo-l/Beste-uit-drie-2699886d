@@ -1,5 +1,9 @@
+body {
+    background: aquamarine;
+}
+
 .all-content {
-    width: 1000;
+    width: 1000px;
     display: flex;
     flex-direction: column;
     padding-left: 25px;
